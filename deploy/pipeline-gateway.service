@@ -1,0 +1,18 @@
+[Unit]
+Description=Pipeline Gateway - 注入消息搭载层（只搬运，不判断）
+After=network.target cadence.service
+Wants=cadence.service
+
+[Service]
+Type=simple
+WorkingDirectory=/root/pipeline-gateway
+# 必须用 v22：/usr/bin/node 是 v18，属 cadence 的运行时
+ExecStart=/usr/local/bin/node /root/pipeline-gateway/gateway.js
+Restart=always
+RestartSec=3
+# 日志自己写文件，stdout 只兜底
+StandardOutput=append:/root/pipeline-gateway/data/stdout.log
+StandardError=append:/root/pipeline-gateway/data/stdout.log
+
+[Install]
+WantedBy=multi-user.target

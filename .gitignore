@@ -1,0 +1,12 @@
+# 运行时数据
+data/
+*.log
+
+# 配置（含 token，绝不入库）
+.env
+.env.local
+
+# 系统
+.DS_Store
+Thumbs.db
+node_modules/
